@@ -21,13 +21,13 @@ public class Paciente {
     private String nome;
     private LocalDate dataNascimento;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_endereco" , referencedColumnName = "id")
+    @JoinColumn(name = "id_endereco" , referencedColumnName = "id", foreignKey = @ForeignKey(name="fk_paciente_endereco"))
     private Endereco endereco;
     private Instant createdAt;
     private Instant updateAt;
     private SexoEnum sexo;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_contato" , referencedColumnName = "id")
+    @JoinColumn(name = "id_contato" , referencedColumnName = "id", foreignKey = @ForeignKey(name="fk_paciente_contato"))
     private Contato contato;
 
 }

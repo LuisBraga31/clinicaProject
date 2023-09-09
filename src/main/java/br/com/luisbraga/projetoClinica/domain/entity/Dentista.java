@@ -25,13 +25,14 @@ public class Dentista {
     private EspecialdiadeEnum especialidade;
     private SexoEnum sexo;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_contato" , referencedColumnName = "id")
+    @JoinColumn(name = "id_contato" , referencedColumnName = "id", foreignKey = @ForeignKey(name="fk_clinica_endereco"))
     private Contato contato;
     @ManyToMany
     @JoinTable(
             name = "clinicaDentista",
             joinColumns = @JoinColumn(name = "id_dentista"),
-            inverseJoinColumns = @JoinColumn(name = "id_clinica")
+            inverseJoinColumns = @JoinColumn(name = "id_clinica"),
+            foreignKey = @ForeignKey(name="fk_clinica_dentista")
     )
     private Set<Clinica> clinicasDentistas;
 

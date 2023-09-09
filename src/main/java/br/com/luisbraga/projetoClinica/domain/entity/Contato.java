@@ -1,6 +1,7 @@
 package br.com.luisbraga.projetoClinica.domain.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,6 +19,7 @@ public class Contato {
     @Column(name="id")
     private UUID id;
     @Column(length = 100)
+    @Email
     private String email;
     @Column(length = 15)
     private String telefone;
