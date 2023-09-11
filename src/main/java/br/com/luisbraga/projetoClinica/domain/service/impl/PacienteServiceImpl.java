@@ -35,8 +35,8 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
     @Override
-    public Paciente atualizarPaciente(UUID id) {
-        return null;
+    public Paciente atualizarPaciente(Paciente paciente) {
+        return pacienteRepository.save(paciente);
     }
 
     @Override

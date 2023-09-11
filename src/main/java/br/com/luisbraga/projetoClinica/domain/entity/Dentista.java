@@ -31,8 +31,7 @@ public class Dentista {
     @JoinTable(
             name = "clinicaDentista",
             joinColumns = @JoinColumn(name = "id_dentista"),
-            inverseJoinColumns = @JoinColumn(name = "id_clinica"),
-            foreignKey = @ForeignKey(name="fk_clinica_dentista")
+            inverseJoinColumns = @JoinColumn(name = "id_clinica")
     )
     private Set<Clinica> clinicasDentistas;
 

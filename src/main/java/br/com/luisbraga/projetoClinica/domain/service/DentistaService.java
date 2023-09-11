@@ -9,6 +9,6 @@ public interface DentistaService {
     Dentista criarDentista(Dentista dentista);
     List<Dentista> buscarDentistas();
     Dentista buscarDentistaPorId(UUID id);
-    Dentista atualizarDentista(UUID id);
+    Dentista atualizarDentista(Dentista dentista);
     void deletarDentista(UUID id);
 }

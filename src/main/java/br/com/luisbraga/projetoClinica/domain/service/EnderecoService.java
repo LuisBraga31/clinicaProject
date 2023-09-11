@@ -9,6 +9,6 @@ public interface EnderecoService {
     Endereco criarEndereco(Endereco endereco);
     List<Endereco> buscarEnderecos();
     Endereco buscarEnderecoPorId(UUID id);
-    Endereco atualizarEndereco(UUID id);
-    void deletarX(UUID id);
+    Endereco atualizarEndereco(Endereco endereco);
+    void deletarEndereco(UUID id);
 }

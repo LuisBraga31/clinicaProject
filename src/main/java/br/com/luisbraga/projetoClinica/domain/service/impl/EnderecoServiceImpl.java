@@ -36,12 +36,12 @@ public class EnderecoServiceImpl implements EnderecoService {
     }
 
     @Override
-    public Endereco atualizarEndereco(UUID id) {
-        return null;
+    public Endereco atualizarEndereco(Endereco endereco) {
+        return enderecoRepository.save(endereco);
     }
 
     @Override
-    public void deletarX(UUID id) {
+    public void deletarEndereco(UUID id) {
         enderecoRepository.deleteById(id);
     }
 }

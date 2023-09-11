@@ -24,11 +24,11 @@ public class Consulta {
     private Paciente paciente;
 
     @ManyToOne
-    @JoinColumn(name="dentista_id", nullable=false)
+    @JoinColumn(name="dentista_id", foreignKey = @ForeignKey(name="fk_consulta_dentista"))
     private Dentista dentista;
 
     @ManyToOne
-    @JoinColumn(name="clinica_id", nullable=false)
+    @JoinColumn(name="clinica_id", foreignKey = @ForeignKey(name="fk_consulta_clinica"))
     private Clinica clinica;
 
     private LocalDate dataConsulta;

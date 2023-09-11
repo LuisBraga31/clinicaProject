@@ -36,8 +36,8 @@ public class ContatoServiceImpl implements ContatoService {
     }
 
     @Override
-    public Contato atualizarContato(UUID id) {
-        return null;
+    public Contato atualizarContato(Contato contato) {
+        return contatoRepository.save(contato);
     }
 
     @Override

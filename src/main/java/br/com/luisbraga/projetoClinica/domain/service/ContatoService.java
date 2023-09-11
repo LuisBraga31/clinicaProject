@@ -9,6 +9,6 @@ public interface ContatoService {
     Contato criarContato(Contato contato);
     List<Contato> buscarContatos();
     Contato buscarContatoPorId(UUID id);
-    Contato atualizarContato(UUID id);
+    Contato atualizarContato(Contato contato);
     void deletarContato(UUID id);
 }

@@ -36,8 +36,8 @@ public class ClinicaServiceImpl implements ClinicaService {
     }
 
     @Override
-    public Clinica atualizarClinica(UUID id) {
-        return null;
+    public Clinica atualizarClinica(Clinica clinica) {
+        return clinicaRepository.save(clinica);
     }
 
     @Override
