@@ -3,9 +3,9 @@ package br.com.luisbraga.projetoClinica.domain.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.br.CNPJ;
 
 import java.time.Instant;
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -16,11 +16,9 @@ public class Clinica {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name="id")
     private UUID id;
     private String nome;
     @Column(length = 20)
-    @CNPJ
     private String cnpj;
     private String razaoSocial;
     private Instant createdAt;
@@ -32,5 +30,8 @@ public class Clinica {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_contato" , referencedColumnName = "id", foreignKey = @ForeignKey(name="fk_clinica_contato"))
     private Contato contato;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_clinica", foreignKey = @ForeignKey(name="fk_clinica_consulta"))
+    private Set<Consulta> consultas;
 
 }
