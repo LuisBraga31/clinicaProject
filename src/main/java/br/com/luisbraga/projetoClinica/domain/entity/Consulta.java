@@ -18,9 +18,19 @@ public class Consulta {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name="id")
     private UUID id;
-    //private Paciente paciente;
-    //private Dentista dentista;
-    //private Clinica clinica;
+
+    @ManyToOne
+    @JoinColumn(name="paciente_id", foreignKey = @ForeignKey(name="fk_consulta_paciente"))
+    private Paciente paciente;
+
+    @ManyToOne
+    @JoinColumn(name="dentista_id", nullable=false)
+    private Dentista dentista;
+
+    @ManyToOne
+    @JoinColumn(name="clinica_id", nullable=false)
+    private Clinica clinica;
+
     private LocalDate dataConsulta;
     private Instant createdAt;
     private Instant updateAt;

@@ -25,7 +25,7 @@ public class Dentista {
     private EspecialdiadeEnum especialidade;
     private SexoEnum sexo;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_contato" , referencedColumnName = "id", foreignKey = @ForeignKey(name="fk_clinica_endereco"))
+    @JoinColumn(name = "id_contato" , referencedColumnName = "id", foreignKey = @ForeignKey(name="fk_dentista_contato"))
     private Contato contato;
     @ManyToMany
     @JoinTable(
