@@ -18,9 +18,9 @@ public class Consulta {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name="id")
     private UUID id;
-    private Paciente paciente;
-    private Dentista dentista;
-    private Clinica clinica;
+    //private Paciente paciente;
+    //private Dentista dentista;
+    //private Clinica clinica;
     private LocalDate dataConsulta;
     private Instant createdAt;
     private Instant updateAt;

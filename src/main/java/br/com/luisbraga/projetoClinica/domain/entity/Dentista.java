@@ -35,10 +35,5 @@ public class Dentista {
             foreignKey = @ForeignKey(name="fk_clinica_dentista")
     )
     private Set<Clinica> clinicasDentistas;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_dentista", foreignKey = @ForeignKey(name="fk_dentista_consulta"))
-    private Set<Consulta> consultas;
-
-
 
 }

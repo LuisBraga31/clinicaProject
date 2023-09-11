@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.Instant;
-import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -30,8 +29,5 @@ public class Clinica {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_contato" , referencedColumnName = "id", foreignKey = @ForeignKey(name="fk_clinica_contato"))
     private Contato contato;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_clinica", foreignKey = @ForeignKey(name="fk_clinica_consulta"))
-    private Set<Consulta> consultas;
 
 }
