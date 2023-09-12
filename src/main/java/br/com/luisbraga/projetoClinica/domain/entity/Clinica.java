@@ -17,6 +17,7 @@ public class Clinica {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id")
     private UUID id;
     private String nome;
     @Column(length = 20)

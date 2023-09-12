@@ -30,8 +30,8 @@ public class Dentista {
     @ManyToMany
     @JoinTable(
             name = "clinicaDentista",
-            joinColumns = @JoinColumn(name = "id_dentista"),
-            inverseJoinColumns = @JoinColumn(name = "id_clinica")
+            joinColumns = @JoinColumn(name = "id_dentista", foreignKey = @ForeignKey(name="fk_dentista_clinica")),
+            inverseJoinColumns = @JoinColumn(name = "id_clinica", foreignKey = @ForeignKey(name="fk_clinica_dentista"))
     )
     private Set<Clinica> clinicasDentistas;
 
