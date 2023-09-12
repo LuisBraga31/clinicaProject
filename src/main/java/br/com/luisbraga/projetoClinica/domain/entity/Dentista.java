@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Set;
 import java.util.UUID;
@@ -24,6 +25,9 @@ public class Dentista {
     @Column(length = 80)
     private EspecialdiadeEnum especialidade;
     private SexoEnum sexo;
+    @Column(updatable = false)
+    private Instant createdAt;
+    private Instant updateAt;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_contato" , referencedColumnName = "id", foreignKey = @ForeignKey(name="fk_dentista_contato"))
     private Contato contato;
@@ -34,5 +38,12 @@ public class Dentista {
             inverseJoinColumns = @JoinColumn(name = "id_clinica", foreignKey = @ForeignKey(name="fk_clinica_dentista"))
     )
     private Set<Clinica> clinicasDentistas;
-
+    @PrePersist
+    public void naCriacao() {
+        this.createdAt = Instant.now();
+    }
+    @PreUpdate
+    public void naAtualizacao() {
+        this.updateAt = Instant.now();
+    }
 }

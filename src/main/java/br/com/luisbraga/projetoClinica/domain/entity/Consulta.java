@@ -32,11 +32,21 @@ public class Consulta {
     private Clinica clinica;
 
     private LocalDate dataConsulta;
+    @Column(updatable = false)
     private Instant createdAt;
     private Instant updateAt;
     private String descricacao;
     private Boolean cancelada;
     @Column(length = 80)
     private String motivoCancelamento;
+
+    @PrePersist
+    public void naCriacao() {
+        this.createdAt = Instant.now();
+    }
+    @PreUpdate
+    public void naAtualizacao() {
+        this.updateAt = Instant.now();
+    }
 
 }

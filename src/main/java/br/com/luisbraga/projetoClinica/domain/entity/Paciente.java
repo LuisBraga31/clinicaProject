@@ -23,11 +23,21 @@ public class Paciente {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_endereco" , referencedColumnName = "id", foreignKey = @ForeignKey(name="fk_paciente_endereco"))
     private Endereco endereco;
+    @Column(updatable = false)
     private Instant createdAt;
     private Instant updateAt;
     private SexoEnum sexo;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_contato" , referencedColumnName = "id", foreignKey = @ForeignKey(name="fk_paciente_contato"))
     private Contato contato;
+
+    @PrePersist
+    public void naCriacao() {
+        this.createdAt = Instant.now();
+    }
+    @PreUpdate
+    public void naAtualizacao() {
+        this.updateAt = Instant.now();
+    }
 
 }

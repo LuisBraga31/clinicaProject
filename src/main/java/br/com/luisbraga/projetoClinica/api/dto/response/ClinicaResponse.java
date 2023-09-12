@@ -21,6 +21,8 @@ public class ClinicaResponse {
     @CNPJ
     private String cnpj;
     private String razaoSocial;
+    private Instant createdAt;
+    private Instant updateAt;
     private String descricao;
     private EnderecoResponse endereco;
     private ContatoResponse contato;

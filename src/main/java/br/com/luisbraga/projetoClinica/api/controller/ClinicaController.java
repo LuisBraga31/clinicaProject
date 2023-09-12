@@ -114,12 +114,16 @@ public class ClinicaController {
         clinicaResponse.setNome(clinica.getNome());
         clinicaResponse.setCnpj(clinica.getCnpj());
         clinicaResponse.setRazaoSocial(clinica.getRazaoSocial());
+        clinicaResponse.setCreatedAt(clinica.getCreatedAt());
+        clinicaResponse.setUpdateAt(clinica.getUpdateAt());
         clinicaResponse.setDescricao(clinica.getDescricao());
 
         ContatoResponse contato = new ContatoResponse();
         contato.setId(clinica.getContato().getId());
         contato.setEmail(clinica.getContato().getEmail());
         contato.setTelefone(clinica.getContato().getTelefone());
+        contato.setCreatedAt(clinica.getContato().getCreatedAt());
+        contato.setUpdateAt(clinica.getContato().getUpdateAt());
 
         EnderecoResponse endereco = new EnderecoResponse();
         endereco.setId(clinica.getEndereco().getId());
@@ -128,6 +132,8 @@ public class ClinicaController {
         endereco.setCidade(clinica.getEndereco().getCidade());
         endereco.setEstado(clinica.getEndereco().getEstado());
         endereco.setCep(clinica.getEndereco().getCep());
+        endereco.setCreatedAt(clinica.getEndereco().getCreatedAt());
+        endereco.setUpdateAt(clinica.getEndereco().getUpdateAt());
 
         clinicaResponse.setContato(contato);
         clinicaResponse.setEndereco(endereco);

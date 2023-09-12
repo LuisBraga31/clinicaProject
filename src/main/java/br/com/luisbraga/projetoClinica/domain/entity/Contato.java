@@ -23,7 +23,17 @@ public class Contato {
     private String email;
     @Column(length = 15)
     private String telefone;
+    @Column(updatable = false)
     private Instant createdAt;
     private Instant updateAt;
+
+    @PrePersist
+    public void naCriacao() {
+        this.createdAt = Instant.now();
+    }
+    @PreUpdate
+    public void naAtualizacao() {
+        this.updateAt = Instant.now();
+    }
 
 }

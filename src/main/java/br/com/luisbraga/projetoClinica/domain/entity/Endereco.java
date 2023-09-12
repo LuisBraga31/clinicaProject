@@ -21,6 +21,7 @@ public class Endereco {
     private String logradouro;
     @Column(length = 100)
     private String bairro;
+    @Column(updatable = false)
     private Instant createdAt;
     private Instant updateAt;
     @Column(length = 100)
@@ -29,5 +30,14 @@ public class Endereco {
     private String estado;
     @Column(length = 10)
     private String cep;
+
+    @PrePersist
+    public void naCriacao() {
+        this.createdAt = Instant.now();
+    }
+    @PreUpdate
+    public void naAtualizacao() {
+        this.updateAt = Instant.now();
+    }
 
 }
