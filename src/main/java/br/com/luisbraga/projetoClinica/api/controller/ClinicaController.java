@@ -4,6 +4,8 @@ import br.com.luisbraga.projetoClinica.api.dto.request.ClinicaRequest;
 import br.com.luisbraga.projetoClinica.api.dto.response.ClinicaResponse;
 import br.com.luisbraga.projetoClinica.api.dto.response.ContatoResponse;
 import br.com.luisbraga.projetoClinica.api.dto.response.EnderecoResponse;
+import br.com.luisbraga.projetoClinica.api.dto.response.List.ClinicaListResponse;
+import br.com.luisbraga.projetoClinica.api.dto.response.Wrapper.ClinicaResponseWrapper;
 import br.com.luisbraga.projetoClinica.domain.entity.Clinica;
 import br.com.luisbraga.projetoClinica.domain.entity.Contato;
 import br.com.luisbraga.projetoClinica.domain.entity.Endereco;
@@ -27,12 +29,27 @@ public class ClinicaController {
         this.clinicaService = clinicaService;
     }
 
+    @GetMapping
+    ResponseEntity<ClinicaResponseWrapper> buscarClinicas() {
+        List<Clinica> clinicas = clinicaService.buscarClinicas();
+        ClinicaResponseWrapper clinicaResponseWrapper = new ClinicaResponseWrapper();
+        clinicaResponseWrapper.setClinicas( clinicas.stream().map( clinica -> {
+            ClinicaListResponse clinicaListResponse = new ClinicaListResponse();
+            clinicaListResponse.setId(clinica.getId());
+            clinicaListResponse.setCnpj(clinica.getCnpj());
+            clinicaListResponse.setNome(clinica.getNome());
+            return clinicaListResponse;
+        }).toList());
+        return ResponseEntity.ok(clinicaResponseWrapper);
+    }
+
     @GetMapping("{id}")
     ResponseEntity<ClinicaResponse> buscarPorId(@PathVariable UUID id) {
         Clinica clinica = clinicaService.buscarClinicaPorId(id);
         ClinicaResponse response = clinicaResponseByClinica(clinica);
         return ResponseEntity.ok(response);
     }
+
     @PostMapping
     ResponseEntity<?> criarClinica(@RequestBody @Valid ClinicaRequest request) {
         Clinica clinica = new Clinica();
@@ -57,6 +74,39 @@ public class ClinicaController {
         Clinica clinicaCriada = clinicaService.criarClinica(clinica);
         return ResponseEntity.ok(clinicaCriada);
     }
+
+    @PutMapping("{id}")
+    ResponseEntity<?> atualizarClinica(@PathVariable UUID id, @RequestBody @Valid ClinicaRequest request) {
+
+        Clinica clinica = clinicaService.buscarClinicaPorId(id);
+        clinica.setCnpj(request.getCnpj());
+        clinica.setNome(request.getNome());
+        clinica.setRazaoSocial(request.getRazaoSocial());
+        clinica.setDescricao(request.getDescricao());
+
+        Contato contato = new Contato();
+        contato.setEmail(request.getContato().getEmail());
+        contato.setTelefone(request.getContato().getTelefone());
+        clinica.setContato(contato);
+
+        Endereco endereco = new Endereco();
+        endereco.setLogradouro(request.getEndereco().getLogradouro());
+        endereco.setBairro(request.getEndereco().getBairro());
+        endereco.setCidade(request.getEndereco().getCidade());
+        endereco.setEstado(request.getEndereco().getEstado());
+        endereco.setCep(request.getEndereco().getCep());
+        clinica.setEndereco(endereco);
+
+        Clinica clinicaAtualizada = clinicaService.atualizarClinica(clinica);
+        return ResponseEntity.ok(clinicaAtualizada);
+    }
+
+    @DeleteMapping("{id}")
+    ResponseEntity<Void> deletarClinica(@PathVariable UUID id) {
+        clinicaService.deletarClinica(id);
+        return ResponseEntity.ok().build();
+    }
+
 
     private ClinicaResponse clinicaResponseByClinica(Clinica clinica) {
         ClinicaResponse clinicaResponse = new ClinicaResponse();
