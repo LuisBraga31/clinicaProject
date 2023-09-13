@@ -11,6 +11,7 @@ import br.com.luisbraga.projetoClinica.domain.entity.Contato;
 import br.com.luisbraga.projetoClinica.domain.entity.Endereco;
 import br.com.luisbraga.projetoClinica.domain.service.ClinicaService;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -103,11 +104,17 @@ public class ClinicaController {
 
     @DeleteMapping("{id}")
     ResponseEntity<Void> deletarClinica(@PathVariable UUID id) {
+        try {
+            clinicaService.buscarClinicaPorId(id);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+
         clinicaService.deletarClinica(id);
         return ResponseEntity.ok().build();
+
     }
-
-
+    
     private ClinicaResponse clinicaResponseByClinica(Clinica clinica) {
         ClinicaResponse clinicaResponse = new ClinicaResponse();
         clinicaResponse.setId(clinica.getId());

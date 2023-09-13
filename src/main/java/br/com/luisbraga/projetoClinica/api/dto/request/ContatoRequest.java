@@ -13,6 +13,7 @@ import java.util.UUID;
 public class ContatoRequest {
 
     @NotNull
+    @Email
     private String email;
     @NotNull
     private String telefone;

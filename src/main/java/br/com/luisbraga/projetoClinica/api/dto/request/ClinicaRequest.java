@@ -1,11 +1,6 @@
 package br.com.luisbraga.projetoClinica.api.dto.request;
 
-import br.com.luisbraga.projetoClinica.domain.entity.Contato;
-import br.com.luisbraga.projetoClinica.domain.entity.Endereco;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.br.CNPJ;
@@ -17,7 +12,7 @@ import java.util.UUID;
 @Setter
 public class ClinicaRequest {
 
-    @NotBlank
+    @NotNull
     private String nome;
     @CNPJ
     private String cnpj;

@@ -20,7 +20,7 @@ public class Clinica {
     @Column(name = "id")
     private UUID id;
     private String nome;
-    @Column(length = 20)
+    @Column(length = 20, unique = true)
     @CNPJ
     private String cnpj;
     @Size(min = 5, message = "O campo deve ter pelo menos 5 caracteres.")

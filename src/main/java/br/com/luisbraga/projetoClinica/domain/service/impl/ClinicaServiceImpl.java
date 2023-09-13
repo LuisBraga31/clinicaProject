@@ -4,7 +4,9 @@ import br.com.luisbraga.projetoClinica.domain.entity.Clinica;
 import br.com.luisbraga.projetoClinica.domain.repository.ClinicaRepository;
 import br.com.luisbraga.projetoClinica.domain.service.ClinicaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.UUID;
@@ -32,7 +34,8 @@ public class ClinicaServiceImpl implements ClinicaService {
 
     @Override
     public Clinica buscarClinicaPorId(UUID id) {
-        return clinicaRepository.findById(id).orElseThrow();
+        return clinicaRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Produto não encontrado."));
     }
 
     @Override
