@@ -114,7 +114,7 @@ public class ClinicaController {
         return ResponseEntity.ok().build();
 
     }
-    
+
     private ClinicaResponse clinicaResponseByClinica(Clinica clinica) {
         ClinicaResponse clinicaResponse = new ClinicaResponse();
         clinicaResponse.setId(clinica.getId());
