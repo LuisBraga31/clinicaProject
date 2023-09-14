@@ -9,10 +9,13 @@ import br.com.luisbraga.projetoClinica.api.dto.response.Wrapper.ClinicaResponseW
 import br.com.luisbraga.projetoClinica.domain.entity.Clinica;
 import br.com.luisbraga.projetoClinica.domain.entity.Contato;
 import br.com.luisbraga.projetoClinica.domain.entity.Endereco;
+import br.com.luisbraga.projetoClinica.domain.exception.BadRequestException;
+import br.com.luisbraga.projetoClinica.domain.exception.NotFoundException;
 import br.com.luisbraga.projetoClinica.domain.service.ClinicaService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +24,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("v1/clinicas")
+@Slf4j
 public class ClinicaController {
 
     private final ClinicaService clinicaService;
@@ -46,14 +50,20 @@ public class ClinicaController {
 
     @GetMapping("{id}")
     ResponseEntity<ClinicaResponse> buscarPorId(@PathVariable UUID id) {
-        Clinica clinica = clinicaService.buscarClinicaPorId(id);
-        ClinicaResponse response = clinicaResponseByClinica(clinica);
-        return ResponseEntity.ok(response);
+        try {
+            Clinica clinica = clinicaService.buscarClinicaPorId(id);
+            ClinicaResponse response = clinicaResponseByClinica(clinica);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            throw new NotFoundException(id);
+        }
+
     }
 
     @PostMapping
     ResponseEntity<?> criarClinica(@RequestBody @Valid ClinicaRequest request) {
         Clinica clinica = new Clinica();
+
         clinica.setCnpj(request.getCnpj());
         clinica.setNome(request.getNome());
         clinica.setRazaoSocial(request.getRazaoSocial());
@@ -72,34 +82,52 @@ public class ClinicaController {
         endereco.setCep(request.getEndereco().getCep());
         clinica.setEndereco(endereco);
 
-        Clinica clinicaCriada = clinicaService.criarClinica(clinica);
-        return ResponseEntity.ok(clinicaCriada);
+        try {
+            Clinica clinicaCriada = clinicaService.criarClinica(clinica);
+            return ResponseEntity.ok(clinicaCriada);
+        } catch (Exception e) {
+            List<Clinica> clinicas = clinicaService.buscarClinicas();
+
+            for (Clinica clinicaBusca : clinicas) {
+                if (clinicaBusca.getCnpj().equals(request.getCnpj())) {
+                    throw new BadRequestException();
+                }
+            }
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro ao criar a clínica.");
+        }
+
     }
 
     @PutMapping("{id}")
     ResponseEntity<?> atualizarClinica(@PathVariable UUID id, @RequestBody @Valid ClinicaRequest request) {
 
-        Clinica clinica = clinicaService.buscarClinicaPorId(id);
-        clinica.setCnpj(request.getCnpj());
-        clinica.setNome(request.getNome());
-        clinica.setRazaoSocial(request.getRazaoSocial());
-        clinica.setDescricao(request.getDescricao());
+        try {
+            Clinica clinica = clinicaService.buscarClinicaPorId(id);
+            clinica.setCnpj(request.getCnpj());
+            clinica.setNome(request.getNome());
+            clinica.setRazaoSocial(request.getRazaoSocial());
+            clinica.setDescricao(request.getDescricao());
 
-        Contato contato = new Contato();
-        contato.setEmail(request.getContato().getEmail());
-        contato.setTelefone(request.getContato().getTelefone());
-        clinica.setContato(contato);
+            Contato contato = new Contato();
+            contato.setEmail(request.getContato().getEmail());
+            contato.setTelefone(request.getContato().getTelefone());
+            clinica.setContato(contato);
 
-        Endereco endereco = new Endereco();
-        endereco.setLogradouro(request.getEndereco().getLogradouro());
-        endereco.setBairro(request.getEndereco().getBairro());
-        endereco.setCidade(request.getEndereco().getCidade());
-        endereco.setEstado(request.getEndereco().getEstado());
-        endereco.setCep(request.getEndereco().getCep());
-        clinica.setEndereco(endereco);
+            Endereco endereco = new Endereco();
+            endereco.setLogradouro(request.getEndereco().getLogradouro());
+            endereco.setBairro(request.getEndereco().getBairro());
+            endereco.setCidade(request.getEndereco().getCidade());
+            endereco.setEstado(request.getEndereco().getEstado());
+            endereco.setCep(request.getEndereco().getCep());
+            clinica.setEndereco(endereco);
 
-        Clinica clinicaAtualizada = clinicaService.atualizarClinica(clinica);
-        return ResponseEntity.ok(clinicaAtualizada);
+            Clinica clinicaAtualizada = clinicaService.atualizarClinica(clinica);
+            return ResponseEntity.ok(clinicaAtualizada);
+
+        } catch (Exception e) {
+            throw new NotFoundException(id);
+        }
+
     }
 
     @DeleteMapping("{id}")
@@ -107,7 +135,7 @@ public class ClinicaController {
         try {
             clinicaService.buscarClinicaPorId(id);
         } catch (Exception e) {
-            return ResponseEntity.notFound().build();
+            throw new NotFoundException(id);
         }
 
         clinicaService.deletarClinica(id);

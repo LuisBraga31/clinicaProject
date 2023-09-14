@@ -12,9 +12,7 @@ import java.util.UUID;
 @Setter
 public class ContatoRequest {
 
-    @NotNull
     @Email
     private String email;
-    @NotNull
     private String telefone;
 }
