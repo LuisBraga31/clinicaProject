@@ -1,6 +1,7 @@
 package br.com.luisbraga.projetoClinica.domain.service.impl;
 
 import br.com.luisbraga.projetoClinica.domain.entity.Paciente;
+import br.com.luisbraga.projetoClinica.domain.exception.NotFoundException;
 import br.com.luisbraga.projetoClinica.domain.repository.PacienteRepository;
 import br.com.luisbraga.projetoClinica.domain.service.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,16 +32,32 @@ public class PacienteServiceImpl implements PacienteService {
 
     @Override
     public Paciente buscarPacientePorId(UUID id) {
-        return pacienteRepository.findById(id).orElseThrow();
+        try {
+            return pacienteRepository.findById(id).orElseThrow();
+        } catch (Exception e){
+            throw new NotFoundException(id);
+        }
+
     }
 
     @Override
     public Paciente atualizarPaciente(UUID id, Paciente paciente) {
+        try {
+            pacienteRepository.findById(id);
+        } catch (Exception e) {
+            throw new NotFoundException(id);
+        }
         return pacienteRepository.save(paciente);
     }
 
     @Override
     public void deletarPaciente(UUID id) {
-        pacienteRepository.deleteById(id);
+        try {
+            pacienteRepository.findById(id).orElseThrow();
+            pacienteRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new NotFoundException(id);
+        }
+
     }
 }
