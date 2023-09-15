@@ -9,13 +9,10 @@ import br.com.luisbraga.projetoClinica.api.dto.response.Wrapper.ClinicaResponseW
 import br.com.luisbraga.projetoClinica.domain.entity.Clinica;
 import br.com.luisbraga.projetoClinica.domain.entity.Contato;
 import br.com.luisbraga.projetoClinica.domain.entity.Endereco;
-import br.com.luisbraga.projetoClinica.domain.exception.BadRequestException;
-import br.com.luisbraga.projetoClinica.domain.exception.NotFoundException;
 import br.com.luisbraga.projetoClinica.domain.service.ClinicaService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
