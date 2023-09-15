@@ -1,6 +1,8 @@
 package br.com.luisbraga.projetoClinica.api.dto.request;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.br.CNPJ;
@@ -12,13 +14,15 @@ import java.util.UUID;
 @Setter
 public class ClinicaRequest {
 
-    @NotNull
+    @NotBlank
     private String nome;
+    @NotBlank
     @CNPJ
     private String cnpj;
-    @NotNull
+    @NotBlank
+    @Size(min = 5)
     private String razaoSocial;
-    @NotNull
+    @NotBlank
     private String descricao;
     @NotNull
     private EnderecoRequest endereco;

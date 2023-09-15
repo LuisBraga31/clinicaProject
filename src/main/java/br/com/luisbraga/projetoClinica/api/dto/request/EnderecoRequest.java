@@ -1,20 +1,20 @@
 package br.com.luisbraga.projetoClinica.api.dto.request;
 
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 public class EnderecoRequest {
-    @NotNull
+    @NotBlank
     private String logradouro;
-    @NotNull
+    @NotBlank
     private String bairro;
-    @NotNull
+    @NotBlank
     private String cidade;
-    @NotNull
+    @NotBlank
     private String estado;
-    @NotNull
+    @NotBlank
     private String cep;
 }

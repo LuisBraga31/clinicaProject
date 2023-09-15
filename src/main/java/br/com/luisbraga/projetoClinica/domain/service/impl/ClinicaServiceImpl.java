@@ -1,6 +1,7 @@
 package br.com.luisbraga.projetoClinica.domain.service.impl;
 
 import br.com.luisbraga.projetoClinica.domain.entity.Clinica;
+import br.com.luisbraga.projetoClinica.domain.exception.BadRequestCnpjException;
 import br.com.luisbraga.projetoClinica.domain.exception.NotFoundException;
 import br.com.luisbraga.projetoClinica.domain.repository.ClinicaRepository;
 import br.com.luisbraga.projetoClinica.domain.service.ClinicaService;
@@ -23,11 +24,15 @@ public class ClinicaServiceImpl implements ClinicaService {
 
     @Override
     public Clinica criarClinica(Clinica clinica) {
+        boolean cnpjExiste = this.clinicaRepository.existsByCnpj(clinica.getCnpj());
+        if (cnpjExiste){
+            throw new BadRequestCnpjException(clinica.getCnpj());
+        }
         return clinicaRepository.save(clinica);
     }
 
     @Override
-    public List<Clinica> buscarClinicas() {
+    public List<Clinica> buscarClinicas(String termo) {
         return clinicaRepository.findAll();
     }
 

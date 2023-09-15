@@ -77,18 +77,8 @@ public class ClinicaController {
         endereco.setCep(request.getEndereco().getCep());
         clinica.setEndereco(endereco);
 
-        try {
-            Clinica clinicaCriada = clinicaService.criarClinica(clinica);
-            return ResponseEntity.ok(clinicaCriada);
-        } catch (Exception e) {
-            List<Clinica> clinicas = clinicaService.buscarClinicas();
-            for (Clinica clinicaBusca : clinicas) {
-                if (clinicaBusca.getCnpj().equals(request.getCnpj())) {
-                    throw new BadRequestException();
-                }
-            }
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro ao criar a clínica.");
-        }
+        Clinica clinicaCriada = clinicaService.criarClinica(clinica);
+        return ResponseEntity.ok(clinicaCriada);
 
     }
 

@@ -21,9 +21,7 @@ public class Clinica {
     private UUID id;
     private String nome;
     @Column(length = 20, unique = true)
-    @CNPJ
     private String cnpj;
-    @Size(min = 5, message = "O campo deve ter pelo menos 5 caracteres.")
     private String razaoSocial;
     @Column(updatable = false)
     private Instant createdAt;

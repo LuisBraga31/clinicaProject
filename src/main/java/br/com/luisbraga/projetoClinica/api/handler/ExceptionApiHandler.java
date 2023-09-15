@@ -1,6 +1,6 @@
 package br.com.luisbraga.projetoClinica.api.handler;
 
-import br.com.luisbraga.projetoClinica.domain.exception.BadRequestException;
+import br.com.luisbraga.projetoClinica.domain.exception.BadRequestCnpjException;
 import br.com.luisbraga.projetoClinica.domain.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +17,9 @@ public class ExceptionApiHandler {
         return ResponseEntity.ok().body(problem);
     }
 
-    @ExceptionHandler(BadRequestException.class)
-    public ResponseEntity<Problema> badRequestExceptionHandler(BadRequestException e) {
-        String message = "Clínica com CNPJ ou nome já cadastrados!";
+    @ExceptionHandler(BadRequestCnpjException.class)
+    public ResponseEntity<Problema> badRequestExceptionHandler(BadRequestCnpjException e) {
+        String message = "Clínica com CNPJ já cadastrado!";
         Problema problem = new Problema(HttpStatus.BAD_REQUEST.value(), message, e.getMessage());
         return ResponseEntity.ok().body(problem);
     }
