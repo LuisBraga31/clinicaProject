@@ -1,8 +1,10 @@
 package br.com.luisbraga.projetoClinica.domain.service.impl;
 
 import br.com.luisbraga.projetoClinica.domain.entity.Clinica;
+import br.com.luisbraga.projetoClinica.domain.exception.NotFoundException;
 import br.com.luisbraga.projetoClinica.domain.repository.ClinicaRepository;
 import br.com.luisbraga.projetoClinica.domain.service.ClinicaService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +21,6 @@ public class ClinicaServiceImpl implements ClinicaService {
         this.clinicaRepository = clinicaRepository;
     }
 
-
     @Override
     public Clinica criarClinica(Clinica clinica) {
         return clinicaRepository.save(clinica);
@@ -32,17 +33,34 @@ public class ClinicaServiceImpl implements ClinicaService {
 
     @Override
     public Clinica buscarClinicaPorId(UUID id) {
-        return clinicaRepository.findById(id)
-                .orElseThrow();
+        try {
+            return clinicaRepository.findById(id)
+                                    .orElseThrow();
+        } catch (Exception e) {
+            throw new NotFoundException(id);
+        }
+
     }
 
     @Override
-    public Clinica atualizarClinica(Clinica clinica) {
+    public Clinica atualizarClinica(UUID id, Clinica clinica) {
+        try {
+            clinicaRepository.findById(id);
+        } catch (Exception e) {
+            throw new NotFoundException(id);
+        }
         return clinicaRepository.save(clinica);
     }
 
     @Override
     public void deletarClinica(UUID id) {
-        clinicaRepository.deleteById(id);
+        try {
+            clinicaRepository.findById(id).orElseThrow();
+            clinicaRepository.deleteById(id);
+        } catch (Exception e){
+            throw new NotFoundException(id);
+        }
+
     }
+
 }

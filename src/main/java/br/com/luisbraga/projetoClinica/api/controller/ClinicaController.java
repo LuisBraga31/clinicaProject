@@ -50,14 +50,9 @@ public class ClinicaController {
 
     @GetMapping("{id}")
     ResponseEntity<ClinicaResponse> buscarPorId(@PathVariable UUID id) {
-        try {
-            Clinica clinica = clinicaService.buscarClinicaPorId(id);
-            ClinicaResponse response = clinicaResponseByClinica(clinica);
-            return ResponseEntity.ok(response);
-        } catch (Exception e) {
-            throw new NotFoundException(id);
-        }
-
+        Clinica clinica = clinicaService.buscarClinicaPorId(id);
+        ClinicaResponse response = clinicaResponseByClinica(clinica);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping
@@ -87,7 +82,6 @@ public class ClinicaController {
             return ResponseEntity.ok(clinicaCriada);
         } catch (Exception e) {
             List<Clinica> clinicas = clinicaService.buscarClinicas();
-
             for (Clinica clinicaBusca : clinicas) {
                 if (clinicaBusca.getCnpj().equals(request.getCnpj())) {
                     throw new BadRequestException();
@@ -101,7 +95,6 @@ public class ClinicaController {
     @PutMapping("{id}")
     ResponseEntity<?> atualizarClinica(@PathVariable UUID id, @RequestBody @Valid ClinicaRequest request) {
 
-        try {
             Clinica clinica = clinicaService.buscarClinicaPorId(id);
             clinica.setCnpj(request.getCnpj());
             clinica.setNome(request.getNome());
@@ -121,26 +114,15 @@ public class ClinicaController {
             endereco.setCep(request.getEndereco().getCep());
             clinica.setEndereco(endereco);
 
-            Clinica clinicaAtualizada = clinicaService.atualizarClinica(clinica);
+            Clinica clinicaAtualizada = clinicaService.atualizarClinica(id, clinica);
             return ResponseEntity.ok(clinicaAtualizada);
-
-        } catch (Exception e) {
-            throw new NotFoundException(id);
-        }
 
     }
 
     @DeleteMapping("{id}")
     ResponseEntity<Void> deletarClinica(@PathVariable UUID id) {
-        try {
-            clinicaService.buscarClinicaPorId(id);
-        } catch (Exception e) {
-            throw new NotFoundException(id);
-        }
-
         clinicaService.deletarClinica(id);
         return ResponseEntity.ok().build();
-
     }
 
     private ClinicaResponse clinicaResponseByClinica(Clinica clinica) {

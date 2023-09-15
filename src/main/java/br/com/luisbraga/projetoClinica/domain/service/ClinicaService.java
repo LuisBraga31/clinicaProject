@@ -10,7 +10,7 @@ public interface ClinicaService {
     Clinica criarClinica(Clinica clinica);
     List<Clinica> buscarClinicas();
     Clinica buscarClinicaPorId(UUID id);
-    Clinica atualizarClinica(Clinica clinica);
+    Clinica atualizarClinica(UUID id, Clinica clinica);
     void deletarClinica(UUID id);
 
 }
