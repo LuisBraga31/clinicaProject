@@ -18,8 +18,10 @@ public class PacienteResponse {
     private UUID id;
     private String nome;
     private LocalDate dataNascimento;
+    private SexoEnum sexo;
     private Instant createdAt;
     private Instant updateAt;
-    private SexoEnum sexo;
+    private EnderecoResponse endereco;
+    private ContatoResponse contato;
 
 }

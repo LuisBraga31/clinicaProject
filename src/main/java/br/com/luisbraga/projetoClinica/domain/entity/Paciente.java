@@ -20,13 +20,13 @@ public class Paciente {
     private UUID id;
     private String nome;
     private LocalDate dataNascimento;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_endereco" , referencedColumnName = "id", foreignKey = @ForeignKey(name="fk_paciente_endereco"))
-    private Endereco endereco;
+    private SexoEnum sexo;
     @Column(updatable = false)
     private Instant createdAt;
     private Instant updateAt;
-    private SexoEnum sexo;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_endereco" , referencedColumnName = "id", foreignKey = @ForeignKey(name="fk_paciente_endereco"))
+    private Endereco endereco;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_contato" , referencedColumnName = "id", foreignKey = @ForeignKey(name="fk_paciente_contato"))
     private Contato contato;
