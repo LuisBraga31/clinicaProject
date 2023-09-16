@@ -24,7 +24,7 @@ public class ClinicaServiceImpl implements ClinicaService {
 
     @Override
     public Clinica criarClinica(Clinica clinica) {
-        boolean cnpjExiste = this.clinicaRepository.existsByCnpj(clinica.getCnpj());
+        boolean cnpjExiste = clinicaRepository.existsByCnpj(clinica.getCnpj());
         if (cnpjExiste){
             throw new BadRequestCnpjException(clinica.getCnpj());
         }

@@ -14,7 +14,9 @@ public class PacienteRequest {
 
     @NotBlank
     private String nome;
+    @NotNull
     private LocalDate dataNascimento;
+    @NotNull
     private SexoEnum sexo;
     @NotNull
     private EnderecoRequest endereco;

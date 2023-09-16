@@ -7,9 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.br.CNPJ;
 
-import java.time.Instant;
-import java.util.UUID;
-
 @Getter
 @Setter
 public class ClinicaRequest {
