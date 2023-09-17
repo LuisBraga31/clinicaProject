@@ -1,5 +1,6 @@
 package br.com.luisbraga.projetoClinica.api.dto.request;
 
+import br.com.luisbraga.projetoClinica.domain.entity.Clinica;
 import br.com.luisbraga.projetoClinica.domain.entity.EspecialdiadeEnum;
 import br.com.luisbraga.projetoClinica.domain.entity.SexoEnum;
 import jakarta.persistence.*;
@@ -24,6 +25,5 @@ public class DentistaRequest {
     private SexoEnum sexo;
     @NotNull
     private ContatoRequest contato;
-
-   // private Set<Clinica> clinicasDentistas;
+    private Set<Clinica> clinicasDentistas;
 }
