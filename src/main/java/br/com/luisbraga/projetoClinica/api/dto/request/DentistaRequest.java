@@ -5,6 +5,7 @@ import br.com.luisbraga.projetoClinica.domain.entity.EspecialdiadeEnum;
 import br.com.luisbraga.projetoClinica.domain.entity.SexoEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,10 +21,15 @@ public class DentistaRequest {
     private String nome;
     @NotBlank
     private String cro;
+    @NotNull
     private LocalDate dataNascimento;
+    @NotNull
     private EspecialdiadeEnum especialidade;
+    @NotNull
     private SexoEnum sexo;
     @NotNull
     private ContatoRequest contato;
+    @NotEmpty
     private Set<Clinica> clinicasDentistas;
+
 }

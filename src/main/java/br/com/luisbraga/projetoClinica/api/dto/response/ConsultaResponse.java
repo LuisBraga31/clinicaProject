@@ -3,7 +3,6 @@ package br.com.luisbraga.projetoClinica.api.dto.response;
 import br.com.luisbraga.projetoClinica.domain.entity.Clinica;
 import br.com.luisbraga.projetoClinica.domain.entity.Dentista;
 import br.com.luisbraga.projetoClinica.domain.entity.Paciente;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,6 +15,9 @@ import java.util.UUID;
 public class ConsultaResponse {
 
     private UUID id;
+    private Paciente paciente;
+    private Dentista dentista;
+    private Clinica clinica;
     private LocalDate dataConsulta;
     private Instant createdAt;
     private Instant updateAt;

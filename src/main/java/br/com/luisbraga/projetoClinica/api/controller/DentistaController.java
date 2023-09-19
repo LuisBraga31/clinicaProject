@@ -2,6 +2,7 @@ package br.com.luisbraga.projetoClinica.api.controller;
 
 import br.com.luisbraga.projetoClinica.api.dto.request.DentistaRequest;
 import br.com.luisbraga.projetoClinica.api.dto.response.DentistaResponse;
+import br.com.luisbraga.projetoClinica.api.dto.response.Wrapper.DentistaWrapperResponse;
 import br.com.luisbraga.projetoClinica.domain.service.DentistaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class DentistaController {
     }
 
     @GetMapping
-    ResponseEntity<?> buscarDentistas() {
+    ResponseEntity<DentistaWrapperResponse> buscarDentistas() {
         return ResponseEntity.ok().build();
     }
 
