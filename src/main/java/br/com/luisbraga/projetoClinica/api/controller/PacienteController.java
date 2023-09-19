@@ -52,7 +52,7 @@ public class PacienteController {
     }
 
     @PostMapping
-    ResponseEntity<?> criarPaciente(@RequestBody @Valid PacienteRequest request) {
+    ResponseEntity<PacienteResponse> criarPaciente(@RequestBody @Valid PacienteRequest request) {
 
         Paciente paciente = new Paciente();
         paciente.setNome(request.getNome());
@@ -73,12 +73,13 @@ public class PacienteController {
         paciente.setEndereco(endereco);
 
         Paciente pacienteCriado = pacienteService.criarPaciente(paciente);
-        return ResponseEntity.ok(pacienteCriado);
+        PacienteResponse response = pacienteResponseByPaciente(pacienteCriado);
+        return ResponseEntity.ok(response);
 
     }
 
     @PutMapping("{id}")
-    ResponseEntity<?> atualizarPaciente(@PathVariable UUID id, @RequestBody @Valid PacienteRequest request) {
+    ResponseEntity<PacienteResponse> atualizarPaciente(@PathVariable UUID id, @RequestBody @Valid PacienteRequest request) {
         Paciente paciente = pacienteService.buscarPacientePorId(id);
 
         paciente.setNome(request.getNome());
@@ -98,8 +99,9 @@ public class PacienteController {
         endereco.setCep(request.getEndereco().getCep());
         paciente.setEndereco(endereco);
 
-        Paciente pacienteCriado = pacienteService.atualizarPaciente(id, paciente);
-        return ResponseEntity.ok(pacienteCriado);
+        Paciente pacienteAtualizado = pacienteService.atualizarPaciente(id, paciente);
+        PacienteResponse response = pacienteResponseByPaciente(pacienteAtualizado);
+        return ResponseEntity.ok(response);
 
     }
 

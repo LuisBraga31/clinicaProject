@@ -53,7 +53,7 @@ public class ClinicaController {
     }
 
     @PostMapping
-    ResponseEntity<?> criarClinica(@RequestBody @Valid ClinicaRequest request) {
+    ResponseEntity<ClinicaResponse> criarClinica(@RequestBody @Valid ClinicaRequest request) {
         Clinica clinica = new Clinica();
 
         clinica.setCnpj(request.getCnpj());
@@ -75,12 +75,13 @@ public class ClinicaController {
         clinica.setEndereco(endereco);
 
         Clinica clinicaCriada = clinicaService.criarClinica(clinica);
-        return ResponseEntity.ok(clinicaCriada);
+        ClinicaResponse response = clinicaResponseByClinica(clinicaCriada);
+        return ResponseEntity.ok(response);
 
     }
 
     @PutMapping("{id}")
-    ResponseEntity<?> atualizarClinica(@PathVariable UUID id, @RequestBody @Valid ClinicaRequest request) {
+    ResponseEntity<ClinicaResponse> atualizarClinica(@PathVariable UUID id, @RequestBody @Valid ClinicaRequest request) {
 
             Clinica clinica = clinicaService.buscarClinicaPorId(id);
             clinica.setCnpj(request.getCnpj());
@@ -102,7 +103,8 @@ public class ClinicaController {
             clinica.setEndereco(endereco);
 
             Clinica clinicaAtualizada = clinicaService.atualizarClinica(id, clinica);
-            return ResponseEntity.ok(clinicaAtualizada);
+            ClinicaResponse response = clinicaResponseByClinica(clinicaAtualizada);
+            return ResponseEntity.ok(response);
 
     }
 
