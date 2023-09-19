@@ -1,6 +1,7 @@
 package br.com.luisbraga.projetoClinica.domain.service.impl;
 
 import br.com.luisbraga.projetoClinica.domain.entity.Dentista;
+import br.com.luisbraga.projetoClinica.domain.exception.NotFoundException;
 import br.com.luisbraga.projetoClinica.domain.repository.DentistaRepository;
 import br.com.luisbraga.projetoClinica.domain.service.DentistaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,16 +32,32 @@ public class DentistaServiceImpl implements DentistaService {
 
     @Override
     public Dentista buscarDentistaPorId(UUID id) {
-        return dentistaRepository.findById(id).orElseThrow();
+        try {
+            return dentistaRepository.findById(id).orElseThrow();
+        } catch (Exception e) {
+            throw new NotFoundException(id);
+        }
+
     }
 
     @Override
-    public Dentista atualizarDentista(Dentista dentista) {
+    public Dentista atualizarDentista(UUID id, Dentista dentista) {
+        try {
+            dentistaRepository.findById(id);
+        } catch (Exception e) {
+            throw new NotFoundException(id);
+        }
         return dentistaRepository.save(dentista);
     }
 
     @Override
     public void deletarDentista(UUID id) {
-        dentistaRepository.deleteById(id);
+        try {
+            dentistaRepository.findById(id).orElseThrow();
+            dentistaRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new NotFoundException(id);
+        }
+
     }
 }
