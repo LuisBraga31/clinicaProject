@@ -26,6 +26,6 @@ public class DentistaResponse {
     private Instant createdAt;
     private Instant updateAt;
     private ContatoResponse contato;
-    private Set<ClinicaResponse> clinicasDentistas;
+    private Set<Clinica> clinicasDentistas;
 
 }
