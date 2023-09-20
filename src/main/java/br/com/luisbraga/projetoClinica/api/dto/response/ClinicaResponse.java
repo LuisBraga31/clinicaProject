@@ -2,7 +2,6 @@ package br.com.luisbraga.projetoClinica.api.dto.response;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.br.CNPJ;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -13,7 +12,6 @@ public class ClinicaResponse {
 
     private UUID id;
     private String nome;
-    @CNPJ
     private String cnpj;
     private String razaoSocial;
     private Instant createdAt;

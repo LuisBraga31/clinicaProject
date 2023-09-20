@@ -1,10 +1,8 @@
 package br.com.luisbraga.projetoClinica.domain.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.br.CNPJ;
 
 import java.time.Instant;
 import java.util.UUID;

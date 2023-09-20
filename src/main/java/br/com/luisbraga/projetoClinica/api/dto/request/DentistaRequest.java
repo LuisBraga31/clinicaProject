@@ -3,7 +3,6 @@ package br.com.luisbraga.projetoClinica.api.dto.request;
 import br.com.luisbraga.projetoClinica.domain.entity.Clinica;
 import br.com.luisbraga.projetoClinica.domain.entity.EspecialdiadeEnum;
 import br.com.luisbraga.projetoClinica.domain.entity.SexoEnum;
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;

@@ -11,7 +11,6 @@ import br.com.luisbraga.projetoClinica.domain.entity.Contato;
 import br.com.luisbraga.projetoClinica.domain.entity.Endereco;
 import br.com.luisbraga.projetoClinica.domain.service.ClinicaService;
 import jakarta.validation.Valid;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +20,6 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("v1/clinicas")
-@Slf4j
 public class ClinicaController {
 
     private final ClinicaService clinicaService;

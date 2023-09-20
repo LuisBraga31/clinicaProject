@@ -1,6 +1,5 @@
 package br.com.luisbraga.projetoClinica.api.dto.response;
 
-import jakarta.validation.constraints.Email;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +11,6 @@ import java.util.UUID;
 public class ContatoResponse {
 
     private UUID id;
-    @Email
     private String email;
     private String telefone;
     private Instant createdAt;

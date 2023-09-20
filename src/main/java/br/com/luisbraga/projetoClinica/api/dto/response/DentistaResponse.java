@@ -1,10 +1,8 @@
 package br.com.luisbraga.projetoClinica.api.dto.response;
 
 import br.com.luisbraga.projetoClinica.domain.entity.Clinica;
-import br.com.luisbraga.projetoClinica.domain.entity.Contato;
 import br.com.luisbraga.projetoClinica.domain.entity.EspecialdiadeEnum;
 import br.com.luisbraga.projetoClinica.domain.entity.SexoEnum;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 

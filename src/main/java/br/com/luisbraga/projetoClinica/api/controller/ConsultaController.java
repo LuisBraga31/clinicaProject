@@ -4,18 +4,13 @@ import br.com.luisbraga.projetoClinica.api.dto.request.ConsultaRequest;
 import br.com.luisbraga.projetoClinica.api.dto.response.ConsultaResponse;
 import br.com.luisbraga.projetoClinica.api.dto.response.List.ConsultaListResponse;
 import br.com.luisbraga.projetoClinica.api.dto.response.Wrapper.ConsultaWrapperResponse;
-import br.com.luisbraga.projetoClinica.domain.entity.Clinica;
 import br.com.luisbraga.projetoClinica.domain.entity.Consulta;
-import br.com.luisbraga.projetoClinica.domain.entity.Dentista;
-import br.com.luisbraga.projetoClinica.domain.entity.Paciente;
 import br.com.luisbraga.projetoClinica.domain.service.ConsultaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Instant;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -82,7 +77,7 @@ public class ConsultaController {
         consulta.setCancelada(request.getCancelada());
         consulta.setMotivoCancelamento(request.getMotivoCancelamento());
 
-        Consulta consultaAtualizada = consultaService.atualizarConsulta(consulta);
+        Consulta consultaAtualizada = consultaService.atualizarConsulta(id, consulta);
         ConsultaResponse response = consultaResponseByConsulta(consultaAtualizada);
         return ResponseEntity.ok(response);
 
