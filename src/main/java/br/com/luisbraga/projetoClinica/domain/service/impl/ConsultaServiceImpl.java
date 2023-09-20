@@ -1,6 +1,7 @@
 package br.com.luisbraga.projetoClinica.domain.service.impl;
 
 import br.com.luisbraga.projetoClinica.domain.entity.Consulta;
+import br.com.luisbraga.projetoClinica.domain.exception.NotFoundException;
 import br.com.luisbraga.projetoClinica.domain.repository.ConsultaRepository;
 import br.com.luisbraga.projetoClinica.domain.service.ConsultaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,16 +32,30 @@ public class ConsultaServiceImpl implements ConsultaService {
 
     @Override
     public Consulta buscarConsultaPorId(UUID id) {
-        return consultaRepository.findById(id).orElseThrow();
+        try {
+            return consultaRepository.findById(id).orElseThrow();
+        } catch (Exception e) {
+            throw new NotFoundException(id);
+        }
     }
 
     @Override
-    public Consulta atualizarConsulta(Consulta consulta) {
+    public Consulta atualizarConsulta(UUID id, Consulta consulta) {
+        try {
+            consultaRepository.findById(id);
+        } catch (Exception e) {
+            throw new NotFoundException(id);
+        }
         return consultaRepository.save(consulta);
     }
 
     @Override
     public void deletarConsulta(UUID id) {
-        consultaRepository.deleteById(id);
+        try {
+            consultaRepository.findById(id).orElseThrow();
+            consultaRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new NotFoundException(id);
+        }
     }
 }

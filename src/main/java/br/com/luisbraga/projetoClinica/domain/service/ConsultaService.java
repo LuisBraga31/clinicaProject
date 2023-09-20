@@ -9,6 +9,6 @@ public interface ConsultaService {
     Consulta criarConsulta(Consulta consulta);
     List<Consulta> buscarConsultas();
     Consulta buscarConsultaPorId(UUID id);
-    Consulta atualizarConsulta(Consulta consulta);
+    Consulta atualizarConsulta(UUID id, Consulta consulta);
     void deletarConsulta(UUID id);
 }
