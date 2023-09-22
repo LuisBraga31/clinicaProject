@@ -15,9 +15,9 @@ import java.util.UUID;
 public class ConsultaResponse {
 
     private UUID id;
-    private Paciente paciente;
-    private Dentista dentista;
-    private Clinica clinica;
+    private UUID paciente;
+    private UUID dentista;
+    private UUID clinica;
     private LocalDate dataConsulta;
     private LocalDateTime createdAt;
     private LocalDateTime updateAt;

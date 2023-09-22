@@ -94,9 +94,9 @@ public class ConsultaController {
         ConsultaResponse consultaResponse = new ConsultaResponse();
         consultaResponse.setId(consulta.getId());
 
-        consultaResponse.setPaciente(consulta.getPaciente());
-        consultaResponse.setDentista(consulta.getDentista());
-        consultaResponse.setClinica(consulta.getClinica());
+        consultaResponse.setPaciente(consulta.getPaciente().getId());
+        consultaResponse.setDentista(consulta.getDentista().getId());
+        consultaResponse.setClinica(consulta.getClinica().getId());
 
         consultaResponse.setDataConsulta(consulta.getDataConsulta());
         consultaResponse.setCreatedAt(consulta.getCreatedAt());
