@@ -1,12 +1,15 @@
 package br.com.luisbraga.projetoClinica.domain.service.impl;
 
 import br.com.luisbraga.projetoClinica.domain.entity.Consulta;
+import br.com.luisbraga.projetoClinica.domain.exception.BadRequestCnpjException;
+import br.com.luisbraga.projetoClinica.domain.exception.BadRequestDataConsultaException;
 import br.com.luisbraga.projetoClinica.domain.exception.NotFoundException;
 import br.com.luisbraga.projetoClinica.domain.repository.ConsultaRepository;
 import br.com.luisbraga.projetoClinica.domain.service.ConsultaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,6 +25,10 @@ public class ConsultaServiceImpl implements ConsultaService {
 
     @Override
     public Consulta criarConsulta(Consulta consulta) {
+
+        if(consulta.getDataConsulta().isBefore(LocalDate.now())) {
+            throw new BadRequestDataConsultaException(consulta.getDataConsulta());
+        }
         return consultaRepository.save(consulta);
     }
 
