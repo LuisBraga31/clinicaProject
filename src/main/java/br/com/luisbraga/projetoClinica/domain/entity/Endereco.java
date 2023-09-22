@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -22,8 +22,8 @@ public class Endereco {
     @Column(length = 100)
     private String bairro;
     @Column(updatable = false)
-    private Instant createdAt;
-    private Instant updateAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime updateAt;
     @Column(length = 100)
     private String cidade;
     @Column(length = 100)
@@ -33,11 +33,11 @@ public class Endereco {
 
     @PrePersist
     public void naCriacao() {
-        this.createdAt = Instant.now();
+        this.createdAt = LocalDateTime.now();
     }
     @PreUpdate
     public void naAtualizacao() {
-        this.updateAt = Instant.now();
+        this.updateAt = LocalDateTime.now();
     }
 
 }

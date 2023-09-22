@@ -4,8 +4,8 @@ import br.com.luisbraga.projetoClinica.domain.entity.SexoEnum;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -16,8 +16,8 @@ public class PacienteResponse {
     private String nome;
     private LocalDate dataNascimento;
     private SexoEnum sexo;
-    private Instant createdAt;
-    private Instant updateAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime updateAt;
     private EnderecoResponse endereco;
     private ContatoResponse contato;
 

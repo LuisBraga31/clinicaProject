@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -33,8 +33,8 @@ public class Consulta {
 
     private LocalDate dataConsulta;
     @Column(updatable = false)
-    private Instant createdAt;
-    private Instant updateAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime updateAt;
     private String descricacao;
     private Boolean cancelada;
     @Column(length = 80)
@@ -42,11 +42,11 @@ public class Consulta {
 
     @PrePersist
     public void naCriacao() {
-        this.createdAt = Instant.now();
+        this.createdAt = LocalDateTime.now();
     }
     @PreUpdate
     public void naAtualizacao() {
-        this.updateAt = Instant.now();
+        this.updateAt = LocalDateTime.now();
     }
 
 }

@@ -3,7 +3,7 @@ package br.com.luisbraga.projetoClinica.api.dto.response;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -13,6 +13,6 @@ public class ContatoResponse {
     private UUID id;
     private String email;
     private String telefone;
-    private Instant createdAt;
-    private Instant updateAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime updateAt;
 }

@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Email;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -24,16 +24,16 @@ public class Contato {
     @Column(length = 15)
     private String telefone;
     @Column(updatable = false)
-    private Instant createdAt;
-    private Instant updateAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime updateAt;
 
     @PrePersist
     public void naCriacao() {
-        this.createdAt = Instant.now();
+        this.createdAt = LocalDateTime.now();
     }
     @PreUpdate
     public void naAtualizacao() {
-        this.updateAt = Instant.now();
+        this.updateAt = LocalDateTime.now();
     }
 
 }

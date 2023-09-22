@@ -6,8 +6,8 @@ import br.com.luisbraga.projetoClinica.domain.entity.SexoEnum;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;
 
@@ -21,8 +21,8 @@ public class DentistaResponse {
     private LocalDate dataNascimento;
     private EspecialdiadeEnum especialidade;
     private SexoEnum sexo;
-    private Instant createdAt;
-    private Instant updateAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime updateAt;
     private ContatoResponse contato;
     private Set<Clinica> clinicasDentistas;
 

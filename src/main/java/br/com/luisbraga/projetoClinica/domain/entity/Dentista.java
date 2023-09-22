@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;
 
@@ -26,8 +26,8 @@ public class Dentista {
     private EspecialdiadeEnum especialidade;
     private SexoEnum sexo;
     @Column(updatable = false)
-    private Instant createdAt;
-    private Instant updateAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime updateAt;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_contato" , referencedColumnName = "id", foreignKey = @ForeignKey(name="fk_dentista_contato"))
     private Contato contato;
@@ -40,10 +40,10 @@ public class Dentista {
     private Set<Clinica> clinicasDentistas;
     @PrePersist
     public void naCriacao() {
-        this.createdAt = Instant.now();
+        this.createdAt = LocalDateTime.now();
     }
     @PreUpdate
     public void naAtualizacao() {
-        this.updateAt = Instant.now();
+        this.updateAt = LocalDateTime.now();
     }
 }
