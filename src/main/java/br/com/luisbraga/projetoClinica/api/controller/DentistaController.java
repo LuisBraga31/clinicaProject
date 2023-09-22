@@ -82,7 +82,7 @@ public class DentistaController {
         dentista.setEspecialidade(request.getEspecialidade());
         dentista.setSexo(request.getSexo());
 
-        Contato contato = new Contato();
+        Contato contato = dentista.getContato();
         contato.setEmail(request.getContato().getEmail());
         contato.setTelefone(request.getContato().getTelefone());
         dentista.setContato(contato);

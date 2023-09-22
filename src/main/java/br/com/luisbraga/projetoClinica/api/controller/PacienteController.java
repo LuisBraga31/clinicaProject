@@ -86,12 +86,12 @@ public class PacienteController {
         paciente.setDataNascimento(request.getDataNascimento());
         paciente.setSexo(request.getSexo());
 
-        Contato contato = new Contato();
+        Contato contato = paciente.getContato();
         contato.setEmail(request.getContato().getEmail());
         contato.setTelefone(request.getContato().getTelefone());
         paciente.setContato(contato);
 
-        Endereco endereco = new Endereco();
+        Endereco endereco = paciente.getEndereco();
         endereco.setLogradouro(request.getEndereco().getLogradouro());
         endereco.setBairro(request.getEndereco().getBairro());
         endereco.setCidade(request.getEndereco().getCidade());

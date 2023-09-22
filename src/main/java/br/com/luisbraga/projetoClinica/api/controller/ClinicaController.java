@@ -87,12 +87,12 @@ public class ClinicaController {
             clinica.setRazaoSocial(request.getRazaoSocial());
             clinica.setDescricao(request.getDescricao());
 
-            Contato contato = new Contato();
+            Contato contato = clinica.getContato();
             contato.setEmail(request.getContato().getEmail());
             contato.setTelefone(request.getContato().getTelefone());
             clinica.setContato(contato);
 
-            Endereco endereco = new Endereco();
+            Endereco endereco = clinica.getEndereco();
             endereco.setLogradouro(request.getEndereco().getLogradouro());
             endereco.setBairro(request.getEndereco().getBairro());
             endereco.setCidade(request.getEndereco().getCidade());
