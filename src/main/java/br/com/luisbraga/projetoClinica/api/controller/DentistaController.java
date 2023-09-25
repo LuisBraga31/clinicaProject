@@ -28,8 +28,8 @@ public class DentistaController {
     }
 
     @GetMapping
-    ResponseEntity<DentistaWrapperResponse> buscarDentistas() {
-        List<Dentista> dentistas = dentistaService.buscarDentistas();
+    ResponseEntity<DentistaWrapperResponse> buscarDentistas(@RequestParam(required = false) String termo) {
+        List<Dentista> dentistas = dentistaService.buscarDentistas(termo);
         DentistaWrapperResponse dentistaWrapperResponse = new DentistaWrapperResponse();
 
         dentistaWrapperResponse.setDentistas( dentistas.stream().map( dentista -> {

@@ -30,8 +30,8 @@ public class PacienteController {
     }
 
     @GetMapping
-    ResponseEntity<PacienteWrapperResponse> buscarPacientes() {
-        List<Paciente> pacientes = pacienteService.buscarPacientes();
+    ResponseEntity<PacienteWrapperResponse> buscarPacientes(@RequestParam(required = false) String termo) {
+        List<Paciente> pacientes = pacienteService.buscarPacientes(termo);
         PacienteWrapperResponse pacienteWrapperResponse = new PacienteWrapperResponse();
 
         pacienteWrapperResponse.setPacientes( pacientes.stream().map( paciente -> {

@@ -26,8 +26,8 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
     @Override
-    public List<Paciente> buscarPacientes() {
-        return pacienteRepository.findAll();
+    public List<Paciente> buscarPacientes(String termo) {
+        return pacienteRepository.findByNomeStartingWith(termo);
     }
 
     @Override

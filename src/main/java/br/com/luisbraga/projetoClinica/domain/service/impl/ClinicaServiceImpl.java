@@ -32,8 +32,8 @@ public class ClinicaServiceImpl implements ClinicaService {
     }
 
     @Override
-    public List<Clinica> buscarClinicas() {
-        return clinicaRepository.findAll();
+    public List<Clinica> buscarClinicas(String termo) {
+        return clinicaRepository.findByNomeStartingWith(termo);
     }
 
     @Override
