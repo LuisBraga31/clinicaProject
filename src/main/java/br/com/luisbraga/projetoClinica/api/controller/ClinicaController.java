@@ -10,6 +10,7 @@ import br.com.luisbraga.projetoClinica.domain.entity.Clinica;
 import br.com.luisbraga.projetoClinica.domain.entity.Contato;
 import br.com.luisbraga.projetoClinica.domain.entity.Endereco;
 import br.com.luisbraga.projetoClinica.domain.service.ClinicaService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("v1/clinicas")
+@Tag(name ="Clinicas")
 public class ClinicaController {
 
     private final ClinicaService clinicaService;
