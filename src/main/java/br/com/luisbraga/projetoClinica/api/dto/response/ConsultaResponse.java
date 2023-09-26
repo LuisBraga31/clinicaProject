@@ -21,7 +21,7 @@ public class ConsultaResponse {
     private LocalDate dataConsulta;
     private LocalDateTime createdAt;
     private LocalDateTime updateAt;
-    private String descricacao;
+    private String descricao;
     private Boolean cancelada;
     private String motivoCancelamento;
 }

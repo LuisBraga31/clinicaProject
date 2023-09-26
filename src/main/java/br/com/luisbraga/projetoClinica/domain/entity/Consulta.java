@@ -35,7 +35,7 @@ public class Consulta {
     @Column(updatable = false)
     private LocalDateTime createdAt;
     private LocalDateTime updateAt;
-    private String descricacao;
+    private String descricao;
     private Boolean cancelada;
     @Column(length = 80)
     private String motivoCancelamento;

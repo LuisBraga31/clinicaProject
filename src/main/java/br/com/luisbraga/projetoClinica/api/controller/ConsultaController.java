@@ -55,7 +55,7 @@ public class ConsultaController {
         consulta.setDentista(request.getDentista());
         consulta.setClinica(request.getClinica());
         consulta.setDataConsulta(request.getDataConsulta());
-        consulta.setDescricacao(request.getDescricacao());
+        consulta.setDescricao(request.getDescricao());
         consulta.setCancelada(request.getCancelada());
         consulta.setMotivoCancelamento(request.getMotivoCancelamento());
 
@@ -73,7 +73,7 @@ public class ConsultaController {
         consulta.setDentista(request.getDentista());
         consulta.setClinica(request.getClinica());
         consulta.setDataConsulta(request.getDataConsulta());
-        consulta.setDescricacao(request.getDescricacao());
+        consulta.setDescricao(request.getDescricao());
         consulta.setCancelada(request.getCancelada());
         consulta.setMotivoCancelamento(request.getMotivoCancelamento());
 
@@ -101,7 +101,7 @@ public class ConsultaController {
         consultaResponse.setDataConsulta(consulta.getDataConsulta());
         consultaResponse.setCreatedAt(consulta.getCreatedAt());
         consultaResponse.setUpdateAt(consulta.getUpdateAt());
-        consultaResponse.setDescricacao(consulta.getDescricacao());
+        consultaResponse.setDescricao(consulta.getDescricao());
         consultaResponse.setCancelada(consulta.getCancelada());
         consultaResponse.setMotivoCancelamento(consulta.getMotivoCancelamento());
 
