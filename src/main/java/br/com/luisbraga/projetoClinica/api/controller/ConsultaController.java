@@ -10,12 +10,14 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.List;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("v1/consultas")
+@Tag(name ="Consultas")
 public class ConsultaController {
 
     private final ConsultaService consultaService;

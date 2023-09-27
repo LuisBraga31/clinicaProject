@@ -9,6 +9,8 @@ import java.util.UUID;
 @Getter
 @Setter
 public class ConsultaListResponse {
+
     private UUID id;
     private LocalDate dataConsulta;
+
 }

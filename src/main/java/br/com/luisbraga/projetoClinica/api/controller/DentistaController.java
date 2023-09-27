@@ -12,12 +12,14 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.List;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("v1/dentistas")
+@Tag(name ="Dentistas")
 public class DentistaController {
 
     private final DentistaService dentistaService;

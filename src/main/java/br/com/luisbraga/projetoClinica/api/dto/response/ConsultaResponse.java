@@ -1,8 +1,5 @@
 package br.com.luisbraga.projetoClinica.api.dto.response;
 
-import br.com.luisbraga.projetoClinica.domain.entity.Clinica;
-import br.com.luisbraga.projetoClinica.domain.entity.Dentista;
-import br.com.luisbraga.projetoClinica.domain.entity.Paciente;
 import lombok.Getter;
 import lombok.Setter;
 

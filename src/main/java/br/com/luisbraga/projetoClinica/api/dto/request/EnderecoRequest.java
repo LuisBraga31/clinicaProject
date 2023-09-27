@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class EnderecoRequest {
+
     @NotBlank
     private String logradouro;
     @NotBlank
@@ -17,4 +18,5 @@ public class EnderecoRequest {
     private String estado;
     @NotBlank
     private String cep;
+
 }
