@@ -43,7 +43,7 @@ public class PacienteServiceImpl implements PacienteService {
     @Override
     public Paciente atualizarPaciente(UUID id, Paciente paciente) {
         try {
-            pacienteRepository.findById(id);
+            pacienteRepository.findById(id).orElseThrow();;
         } catch (Exception e) {
             throw new NotFoundException(id);
         }

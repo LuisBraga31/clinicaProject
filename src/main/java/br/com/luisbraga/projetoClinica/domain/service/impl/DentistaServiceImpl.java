@@ -43,7 +43,7 @@ public class DentistaServiceImpl implements DentistaService {
     @Override
     public Dentista atualizarDentista(UUID id, Dentista dentista) {
         try {
-            dentistaRepository.findById(id);
+            dentistaRepository.findById(id).orElseThrow();;
         } catch (Exception e) {
             throw new NotFoundException(id);
         }

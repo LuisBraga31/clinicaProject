@@ -5,7 +5,6 @@ import br.com.luisbraga.projetoClinica.domain.exception.BadRequestCnpjException;
 import br.com.luisbraga.projetoClinica.domain.exception.NotFoundException;
 import br.com.luisbraga.projetoClinica.domain.repository.ClinicaRepository;
 import br.com.luisbraga.projetoClinica.domain.service.ClinicaService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,8 +38,7 @@ public class ClinicaServiceImpl implements ClinicaService {
     @Override
     public Clinica buscarClinicaPorId(UUID id) {
         try {
-            return clinicaRepository.findById(id)
-                                    .orElseThrow();
+            return clinicaRepository.findById(id).orElseThrow();
         } catch (Exception e) {
             throw new NotFoundException(id);
         }
@@ -50,7 +48,7 @@ public class ClinicaServiceImpl implements ClinicaService {
     @Override
     public Clinica atualizarClinica(UUID id, Clinica clinica) {
         try {
-            clinicaRepository.findById(id);
+            clinicaRepository.findById(id).orElseThrow();;
         } catch (Exception e) {
             throw new NotFoundException(id);
         }

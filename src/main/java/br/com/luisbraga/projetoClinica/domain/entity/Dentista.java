@@ -38,6 +38,7 @@ public class Dentista {
             inverseJoinColumns = @JoinColumn(name = "id_clinica", foreignKey = @ForeignKey(name="fk_clinica_dentista"))
     )
     private Set<Clinica> clinicasDentistas;
+
     @PrePersist
     public void naCriacao() {
         this.createdAt = LocalDateTime.now();

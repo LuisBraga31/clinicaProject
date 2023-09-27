@@ -1,7 +1,6 @@
 package br.com.luisbraga.projetoClinica.domain.service.impl;
 
 import br.com.luisbraga.projetoClinica.domain.entity.Consulta;
-import br.com.luisbraga.projetoClinica.domain.exception.BadRequestCnpjException;
 import br.com.luisbraga.projetoClinica.domain.exception.BadRequestDataConsultaException;
 import br.com.luisbraga.projetoClinica.domain.exception.NotFoundException;
 import br.com.luisbraga.projetoClinica.domain.repository.ConsultaRepository;
@@ -49,7 +48,7 @@ public class ConsultaServiceImpl implements ConsultaService {
     @Override
     public Consulta atualizarConsulta(UUID id, Consulta consulta) {
         try {
-            consultaRepository.findById(id);
+            consultaRepository.findById(id).orElseThrow();;
         } catch (Exception e) {
             throw new NotFoundException(id);
         }

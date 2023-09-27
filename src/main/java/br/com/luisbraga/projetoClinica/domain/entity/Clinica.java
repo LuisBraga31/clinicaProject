@@ -18,7 +18,7 @@ public class Clinica {
     @Column(name = "id")
     private UUID id;
     private String nome;
-    @Column(length = 20, unique = true)
+    @Column(unique = true)
     private String cnpj;
     private String razaoSocial;
     @Column(updatable = false)
