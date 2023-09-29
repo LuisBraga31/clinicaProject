@@ -1,6 +1,7 @@
 package br.com.luisbraga.projetoClinica.domain.service.impl;
 
 import br.com.luisbraga.projetoClinica.domain.entity.Dentista;
+import br.com.luisbraga.projetoClinica.domain.exception.BadRequestContatoException;
 import br.com.luisbraga.projetoClinica.domain.exception.NotFoundException;
 import br.com.luisbraga.projetoClinica.domain.repository.DentistaRepository;
 import br.com.luisbraga.projetoClinica.domain.service.DentistaService;
@@ -22,6 +23,9 @@ public class DentistaServiceImpl implements DentistaService {
 
     @Override
     public Dentista criarDentista(Dentista dentista) {
+        if(dentista.getContato().getEmail() == null && dentista.getContato().getTelefone() == null) {
+            throw new BadRequestContatoException();
+        }
         return dentistaRepository.save(dentista);
     }
 

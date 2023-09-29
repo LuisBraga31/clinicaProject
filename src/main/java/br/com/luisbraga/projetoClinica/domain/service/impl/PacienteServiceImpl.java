@@ -1,6 +1,7 @@
 package br.com.luisbraga.projetoClinica.domain.service.impl;
 
 import br.com.luisbraga.projetoClinica.domain.entity.Paciente;
+import br.com.luisbraga.projetoClinica.domain.exception.BadRequestContatoException;
 import br.com.luisbraga.projetoClinica.domain.exception.NotFoundException;
 import br.com.luisbraga.projetoClinica.domain.repository.PacienteRepository;
 import br.com.luisbraga.projetoClinica.domain.service.PacienteService;
@@ -22,6 +23,9 @@ public class PacienteServiceImpl implements PacienteService {
 
     @Override
     public Paciente criarPaciente(Paciente paciente) {
+        if(paciente.getContato().getEmail() == null && paciente.getContato().getTelefone() == null) {
+            throw new BadRequestContatoException();
+        }
         return pacienteRepository.save(paciente);
     }
 

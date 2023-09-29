@@ -2,15 +2,18 @@ package br.com.luisbraga.projetoClinica.domain.service.impl;
 
 import br.com.luisbraga.projetoClinica.domain.entity.Clinica;
 import br.com.luisbraga.projetoClinica.domain.exception.BadRequestCnpjException;
+import br.com.luisbraga.projetoClinica.domain.exception.BadRequestContatoException;
 import br.com.luisbraga.projetoClinica.domain.exception.NotFoundException;
 import br.com.luisbraga.projetoClinica.domain.repository.ClinicaRepository;
 import br.com.luisbraga.projetoClinica.domain.service.ClinicaService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
+@Slf4j
 @Service
 public class ClinicaServiceImpl implements ClinicaService {
 
@@ -27,7 +30,11 @@ public class ClinicaServiceImpl implements ClinicaService {
         if (cnpjExiste){
             throw new BadRequestCnpjException(clinica.getCnpj());
         }
-        return clinicaRepository.save(clinica);
+        if(clinica.getContato().getEmail() == null && clinica.getContato().getTelefone() == null) {
+            throw new BadRequestContatoException();
+        }
+
+         return clinicaRepository.save(clinica);
     }
 
     @Override
