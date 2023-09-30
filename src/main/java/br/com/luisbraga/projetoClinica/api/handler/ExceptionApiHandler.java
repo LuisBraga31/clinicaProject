@@ -23,21 +23,21 @@ public class ExceptionApiHandler {
     public ResponseEntity<Problema> badRequestExceptionHandler(BadRequestCnpjException e) {
         String message = "Clínica com CNPJ já cadastrado!";
         Problema problem = new Problema(HttpStatus.BAD_REQUEST.value(), message, e.getMessage());
-        return ResponseEntity.ok().body(problem);
+        return ResponseEntity.badRequest().body(problem);
     }
 
     @ExceptionHandler(BadRequestDataConsultaException.class)
     public ResponseEntity<Problema> badRequestCnpjException(BadRequestDataConsultaException e) {
         String message = "Data anterior ao dia atual!";
         Problema problem = new Problema(HttpStatus.BAD_REQUEST.value(), message, e.getMessage());
-        return ResponseEntity.ok().body(problem);
+        return ResponseEntity.badRequest().body(problem);
     }
 
     @ExceptionHandler(BadRequestContatoException.class)
     public ResponseEntity<Problema> badRequestContatoException(BadRequestContatoException e){
         String message = "Preencha pelo menos um dos campos de contato!";
         Problema problem = new Problema(HttpStatus.BAD_REQUEST.value(), message, e.getMessage());
-        return ResponseEntity.ok().body(problem);
+        return ResponseEntity.badRequest().body(problem);
     }
 
 }
